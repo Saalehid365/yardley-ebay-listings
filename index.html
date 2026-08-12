@@ -81,7 +81,7 @@
   .dots{display:flex; gap:6px;}
   .dots span{width:8px; height:8px; border-radius:50%; background:var(--line);}
   .url{flex:1; font-family:var(--mono); font-size:11px; color:var(--muted); background:var(--paper); border:1px solid var(--line); border-radius:5px; padding:4px 9px;}
-  iframe{width:100%; border:0; display:block; background:#fff;}
+  iframe{width:100%; border:0; display:block; background:#fff; min-height:600px;}
 
   .generate-section{display:flex; justify-content:center; padding:10px 0 4px;}
   .generate-btn{font-size:15px; padding:14px 28px;}
@@ -631,6 +631,15 @@ function renderForm(){
   renderExtraSpecs();
 }
 
+function resizePreviewFrame(){
+  const frame = document.getElementById("previewFrame");
+  try {
+    const doc = frame.contentWindow.document;
+    const height = Math.max(doc.documentElement.scrollHeight, doc.body.scrollHeight);
+    frame.style.height = (height + 24) + "px";
+  } catch (e) { /* ignore — cross-origin or not loaded yet */ }
+}
+
 function update(){
   const html = generateHTML();
   document.getElementById("output").value = html;
@@ -768,6 +777,8 @@ document.getElementById("downloadBtn").addEventListener("click", () => {
   a.click();
   URL.revokeObjectURL(url);
 });
+
+document.getElementById("previewFrame").addEventListener("load", resizePreviewFrame);
 
 renderForm();
 update();
