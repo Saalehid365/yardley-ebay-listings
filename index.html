@@ -124,7 +124,7 @@
       <legend>Product</legend>
       <label for="category">Category</label>
       <select id="category"></select>
-      <p class="hint">Choosing a category fills in sensible Material, Colour, Recyclable, Custom Sizing and Feature suggestions below, pulled from Yardley's own range — edit anything afterward.</p>
+      <p class="hint">Choosing a category fills in an SEO-friendly Intro line plus sensible Material, Colour, Recyclable, Custom Sizing and Feature suggestions below, pulled from Yardley's own range — edit anything afterward.</p>
 
       <label for="title">Title</label>
       <input type="text" id="title" placeholder="e.g. Long Cardboard Boxes" />
@@ -190,6 +190,7 @@
 /* ---------- category presets (real Yardley Packaging categories) ---------- */
 const CATEGORY_PRESETS = {
   "Cardboard Boxes": {
+    intro: "Strong, recyclable cardboard boxes for shipping, moving, and storage — a reliable, eco-friendly packaging choice trusted by UK businesses and households.",
     materials: ["Single-wall corrugated cardboard", "Double-wall corrugated cardboard", "Triple-wall corrugated cardboard"],
     colours: ["Brown kraft", "White"],
     recyclable: "Yes — 100% recyclable",
@@ -203,6 +204,7 @@ const CATEGORY_PRESETS = {
     ]
   },
   "Bubble Wrap": {
+    intro: "Protective bubble wrap that cushions fragile items against knocks and drops in transit — ideal for shipping, house moves, and safe storage.",
     materials: ["Polyethylene (PE) bubble wrap", "Anti-static bubble wrap", "Biodegradable bubble wrap"],
     colours: ["Clear", "Silver (anti-static)"],
     recyclable: "Yes — check local soft plastics recycling",
@@ -216,6 +218,7 @@ const CATEGORY_PRESETS = {
     ]
   },
   "Bubble Envelopes": {
+    intro: "Padded bubble envelopes offering lightweight, cushioned protection for posting fragile or valuable items — a cost-effective alternative to boxes.",
     materials: ["Kraft paper outer with bubble lining", "White paper outer with bubble lining"],
     colours: ["Brown kraft", "White"],
     recyclable: "Partially recyclable",
@@ -229,6 +232,7 @@ const CATEGORY_PRESETS = {
     ]
   },
   "Kraft Paper Bags": {
+    intro: "Strong, recyclable kraft paper bags for retail packaging, gifting, and eco-conscious deliveries — a sustainable alternative to plastic carrier bags.",
     materials: ["Kraft paper — twisted handle", "Kraft paper — flat handle"],
     colours: ["Brown kraft", "White"],
     recyclable: "Yes — 100% recyclable",
@@ -242,6 +246,7 @@ const CATEGORY_PRESETS = {
     ]
   },
   "Labels & A4 Paper": {
+    intro: "High-quality printer labels and A4 paper for shipping, stock control, and everyday office use — smooth printing with a strong, lasting adhesive.",
     materials: ["Self-adhesive label paper", "Standard 80gsm A4 paper"],
     colours: ["White"],
     recyclable: "Yes — 100% recyclable",
@@ -255,6 +260,7 @@ const CATEGORY_PRESETS = {
     ]
   },
   "Mailing Bags": {
+    intro: "Durable, waterproof mailing bags for secure postal shipping — lightweight, tamper-evident, and ideal for clothing, parcels, and small goods.",
     materials: ["Co-extruded polythene (opaque)", "Recycled polythene"],
     colours: ["Grey", "Black", "White"],
     recyclable: "Yes — check local soft plastics recycling",
@@ -268,6 +274,7 @@ const CATEGORY_PRESETS = {
     ]
   },
   "Packaging Tapes": {
+    intro: "Strong packaging tape for sealing boxes and parcels securely — reliable adhesion for shipping, storage, and everyday business use.",
     materials: ["Polypropylene tape", "Paper (kraft) tape", "Fragile-print tape"],
     colours: ["Clear", "Brown", "Printed"],
     recyclable: "Partially recyclable",
@@ -281,6 +288,7 @@ const CATEGORY_PRESETS = {
     ]
   },
   "Pallet Wrap & Stretch Film": {
+    intro: "Heavy-duty pallet wrap and stretch film to secure and protect palletised loads during storage and transit — trusted by UK warehouses and businesses.",
     materials: ["Blown stretch film", "Cast stretch film"],
     colours: ["Clear", "Black"],
     recyclable: "Yes — check local soft plastics recycling",
@@ -294,6 +302,7 @@ const CATEGORY_PRESETS = {
     ]
   },
   "Paper Sheets & Cardboard Rolls": {
+    intro: "Versatile kraft paper sheets and cardboard rolls for wrapping, void fill, and surface protection — a recyclable, plastic-free packing solution.",
     materials: ["Kraft paper sheets", "Corrugated cardboard roll"],
     colours: ["Brown kraft", "White"],
     recyclable: "Yes — 100% recyclable",
@@ -307,6 +316,7 @@ const CATEGORY_PRESETS = {
     ]
   },
   "Polythene Bags & Rolls": {
+    intro: "Durable polythene bags and rolls for packaging, storage, and protection — waterproof, flexible, and available in a range of sizes.",
     materials: ["Low-density polythene (LDPE)"],
     colours: ["Clear", "Black"],
     recyclable: "Yes — check local soft plastics recycling",
@@ -320,6 +330,7 @@ const CATEGORY_PRESETS = {
     ]
   },
   "Corner & Edge Protectors": {
+    intro: "Fibreboard corner and edge protectors that guard products from knocks and damage in transit and storage — essential for safe palletised shipping.",
     materials: ["Solid fibreboard edge protector", "Foam corner protector"],
     colours: ["Brown", "White"],
     recyclable: "Yes — 100% recyclable",
@@ -333,6 +344,7 @@ const CATEGORY_PRESETS = {
     ]
   },
   "Strapping": {
+    intro: "Heavy-duty strapping for securing pallets and bundles during transit and storage — reliable tension and hold for safe, damage-free shipping.",
     materials: ["Polypropylene (PP) strapping", "Polyester (PET) strapping"],
     colours: ["Black", "Green", "Clear"],
     recyclable: "Yes — check local soft plastics recycling",
@@ -346,6 +358,7 @@ const CATEGORY_PRESETS = {
     ]
   },
   "Void & Loose Fill": {
+    intro: "Lightweight, eco-friendly void fill and loose fill packaging that protects items in transit — fills empty space and prevents shifting during shipping.",
     materials: ["Loose fill packing peanuts (biodegradable)", "Paper void fill"],
     colours: ["White", "Brown kraft"],
     recyclable: "Biodegradable / compostable",
@@ -358,7 +371,7 @@ const CATEGORY_PRESETS = {
       { emoji: "💨", label: "Easy to Dispense", text: "Simple to pour or fill by hand for quick packing." }
     ]
   },
-  "Other": { materials: [], colours: [], recyclable: "", customSizing: "", features: [] }
+  "Other": { intro: "", materials: [], colours: [], recyclable: "", customSizing: "", features: [] }
 };
 const CATEGORIES = Object.keys(CATEGORY_PRESETS);
 const RECYCLABLE_OPTIONS = ["Yes — 100% recyclable", "Yes — check local soft plastics recycling", "Partially recyclable", "Biodegradable / compostable", "Not recyclable"];
@@ -651,13 +664,14 @@ function update(){
 /* ---------- events ---------- */
 document.getElementById("category").addEventListener("change", e => {
   const newCat = e.target.value;
-  const hasContent = state.material || state.colour || state.features.some(f => f.label || f.text);
-  if (hasContent && !confirm("Applying this category replaces Material, Colour, Recyclable, Custom Sizing and Features with typical defaults for it. Continue?")){
+  const hasContent = state.material || state.colour || state.intro || state.features.some(f => f.label || f.text);
+  if (hasContent && !confirm("Applying this category replaces the Intro line, Material, Colour, Recyclable, Custom Sizing and Features with typical defaults for it. Continue?")){
     e.target.value = state.category;
     return;
   }
   state.category = newCat;
   const preset = CATEGORY_PRESETS[newCat] || CATEGORY_PRESETS["Other"];
+  state.intro = preset.intro || "";
   state.material = preset.materials[0] || "";
   state.colour = preset.colours[0] || "";
   state.recyclable = preset.recyclable || "";
