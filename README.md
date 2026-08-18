@@ -31,7 +31,7 @@ Open `ebay-template-generator.html` in any browser — double-click the file, no
 
 1. It opens pre-loaded with the Long Cardboard Boxes example. Use **"Clear / New listing"** to start a fresh product, or edit the example fields directly for today's listing.
 2. Pick a **Category** from the dropdown (all 13 of Yardley's real categories — Cardboard Boxes, Bubble Wrap, Mailing Bags, Packaging Tapes, etc.). This automatically fills in sensible **Material**, **Colour**, **Recyclable**, **Custom Sizing** and **Feature** suggestions for that product type — everything stays fully editable afterward.
-3. Fill in the **Title** and **Intro line**.
+3. For the **Title**, click **"✦ Suggest SEO title"** — it builds an eBay-optimised title (up to eBay's 80-character limit) from the category, size and material, front-loaded with the words buyers actually search for. A live counter under the field shows how many characters you've used, and turns red past 70 so you can see the limit coming. Still fully editable — tweak it or write your own. Fill in the **Intro line** too (auto-filled by category, same as before).
 4. Adjust the pre-filled **Features** as needed — each one has its own "Choose a preset" dropdown if you want to swap in a different pre-written feature instead of typing one from scratch — and set **Size options** and **Pack quantity** (dimensions are typed freely since every size varies; quantity has a dropdown of common pack sizes).
 5. The right-hand panel updates live — a rendered preview on top, the raw HTML underneath.
 6. Click **Copy HTML**, then paste it into eBay's listing description (see step 4 below).
