@@ -131,7 +131,7 @@
         <button type="button" id="suggestTitleBtn" class="ghost" style="font-size:11px; padding:5px 10px;">✦ Suggest SEO title</button>
       </div>
       <input type="text" id="title" maxlength="80" placeholder="e.g. Long Cardboard Boxes 24x12x12in Strong Postal Shipping Boxes" />
-      <p class="hint"><span id="titleCount">0</span> / 80 characters — eBay's title limit. The most-searched words matter most at the start.</p>
+      <p class="hint"><span id="titleCount">0</span> / 80 characters — eBay's title limit. The most-searched words matter most at the start. "Suggest SEO title" needs Category, Material and Size options filled in first (further down) — fill those in, then come back and click it.</p>
 
       <label for="intro">Intro line</label>
       <textarea id="intro" rows="2" placeholder="One sentence describing what it's for and why it's good."></textarea>
@@ -556,20 +556,16 @@ function generateHTML(){
 </table>`;
 }
 
-function shortMaterial(material, category){
+function cleanMaterial(material){
   if (!material) return "";
-  const cleaned = material.replace(/\([^)]*\)/g, " ").replace(/[—–-]/g, " ").replace(/\s+/g, " ").trim();
-  const words = cleaned.split(" ");
-  const short = words.slice(-2).join(" ");
-  if (category && category.toLowerCase().includes(short.toLowerCase())) return "";
-  return short;
+  return material.replace(/\([^)]*\)/g, " ").replace(/[—–]/g, " ").replace(/\s+/g, " ").trim();
 }
 
 function buildSeoTitle(){
   const preset = CATEGORY_PRESETS[state.category];
   if (!preset || !state.category) return state.title;
 
-  const core = [state.category, state.sizeOptions.trim(), shortMaterial(state.material, state.category)]
+  const core = [state.category, state.sizeOptions.trim(), cleanMaterial(state.material)]
     .filter(Boolean).join(" ").replace(/\s+/g, " ").trim();
 
   let title = core;
@@ -741,7 +737,6 @@ document.getElementById("category").addEventListener("change", e => {
   state.customSizing = preset.customSizing || "";
   state.features = preset.features.length ? JSON.parse(JSON.stringify(preset.features)) : [{ emoji: "•", label: "", text: "" }];
   uiOtherMode = { material: false, colour: false, recyclable: false, packQty: false, customSizing: false };
-  if (!state.title.trim()) state.title = buildSeoTitle();
   renderForm(); update();
 });
 
@@ -750,8 +745,12 @@ document.getElementById("category").addEventListener("change", e => {
 });
 
 document.getElementById("suggestTitleBtn").addEventListener("click", () => {
-  if (!state.category){
-    alert("Pick a category first — the title is built from the category, size and material.");
+  const missing = [];
+  if (!state.category) missing.push("Category");
+  if (!state.material.trim()) missing.push("Material");
+  if (!state.sizeOptions.trim()) missing.push("Size options");
+  if (missing.length){
+    alert("Fill in " + missing.join(", ") + " first — the title is built from all of these.");
     return;
   }
   state.title = buildSeoTitle();
