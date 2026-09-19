@@ -288,6 +288,7 @@ const CATEGORY_PRESETS = {
     colours: ["Grey", "Black", "White"],
     recyclable: "Yes — check local soft plastics recycling",
     customSizing: "Not available — standard sizes only",
+    packQtyOptions: ["Sold individually", "Pack of 100", "Pack of 200", "Pack of 500", "Pack of 1,000", "Pack of 2,000", "Pack of 5,000", "Pack of 10,000", "Pack of 20,000"],
     features: [
       { emoji: "💧", label: "Waterproof", text: "Keeps contents dry in transit, whatever the weather." },
       { emoji: "🔒", label: "Tamper-Evident Seal", text: "Self-seal strip shows clearly if a bag has been opened." },
@@ -663,7 +664,7 @@ function renderSpecsFixed(){
     buildSpecFieldHTML("material", preset.materials) +
     buildSpecFieldHTML("colour", preset.colours) +
     `<div class="spec-field"><label>Size options</label><input type="text" data-text="sizeOptions" value="${esc(state.sizeOptions)}" placeholder="e.g. 12x12x12in, 18x18x18in, 24x12x12in" /></div>` +
-    buildSpecFieldHTML("packQty", PACK_QTY_OPTIONS) +
+    buildSpecFieldHTML("packQty", preset.packQtyOptions || PACK_QTY_OPTIONS) +
     buildSpecFieldHTML("recyclable", RECYCLABLE_OPTIONS) +
     buildSpecFieldHTML("customSizing", CUSTOM_SIZING_OPTIONS);
 }
